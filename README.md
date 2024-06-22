@@ -2,6 +2,8 @@
 
 ### Goal: To Build a Backend that creates, retrieves, updates, and deletes comments
 
+[Read how to test the endpoints on this server](EndpointsTest.md)
+
 ## Endpoints
 
     We'll only be focusing on Creating, Reading, & Deleting.
@@ -18,7 +20,7 @@
   - `id` as number required
 - `GET` "/todos/new": route to new todo form
 
-### `Creation & Destroyal Endpoints (POST)`
+### `Create & Destroy Endpoints (POST)`
 
 - `POST` "/todos": Create a new todo
   - `title` required, `due-date` is optional
