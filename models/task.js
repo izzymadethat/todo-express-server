@@ -1,6 +1,6 @@
 module.exports = class Task {
     constructor(title, date) {
-        this.id = this.getAutoId()
+        this.id = Task.getAutoId()
         this.title = title
         this.dueDate = date ?? null
         this.comments = []
@@ -9,7 +9,7 @@ module.exports = class Task {
     }
 
     static idCount = 0;
-    static allTasks = []
+    static allTasks = [];
 
     static getAutoId() {
         Task.idCount++
@@ -20,18 +20,27 @@ module.exports = class Task {
         this.comments.push(comment)
     }
 
+    // Shows all tasks in a pretty format
     static getInfo() {
-        return Task.allTasks.map(task => {
-            let comments;
+        let allTasks = {}
 
-            if (task.comments) {
+        Task.allTasks.forEach(task => {
+            let comments;
+            let taskId = String(task.id)
+
+            if (task.comments.length > 0) {
                 comments = task.comments.map(comment => comment.text)
             }
 
-            return `Task: ${task.name}, 
-             Due Date: ${task.dueDate ?? "Not Set"}, 
-             Comments: ${comments ?? "No comments found."} 
-            `
+            allTasks[taskId] = {
+                task: task.title,
+                due_date: task.dueDate ?? "Not set",
+                comments: comments ?? "No comments found"
+            }
+
+
         })
+
+        return allTasks
     }
 }
